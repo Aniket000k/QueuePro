@@ -2,6 +2,11 @@
 
 A full-stack queue management system for hospitals and banks, featuring real-time updates, token generation, and admin controls. Built with Node.js, Express, MongoDB, React, Vite, Tailwind CSS, and Socket.IO.
 
+## 🚀 Live Demo
+
+👉 [Click here to view the project](https://queuepro.onrender.com)
+
+
 ## Features
 - User registration and login (JWT-based authentication)
 - Token generation for different services (resets daily per service)
