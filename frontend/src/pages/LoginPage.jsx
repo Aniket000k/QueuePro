@@ -10,7 +10,7 @@ const LoginPage = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    isAdmin: false,
+    // Remove isAdmin
   })
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState("")
@@ -24,7 +24,11 @@ const LoginPage = () => {
     setError("")
 
     try {
-      const response = await axios.post("/api/auth/login", formData)
+      const response = await axios.post("/api/auth/login", {
+        email: formData.email,
+        password: formData.password,
+        // Do not send isAdmin
+      })
 
       login(response.data.user, response.data.token)
 
@@ -116,19 +120,7 @@ const LoginPage = () => {
                 </div>
               </div>
 
-              {/* Admin Toggle */}
-              <div className="flex items-center space-x-3 p-4 bg-gray-50 rounded-xl">
-                <input
-                  id="isAdmin"
-                  type="checkbox"
-                  checked={formData.isAdmin}
-                  onChange={(e) => setFormData({ ...formData, isAdmin: e.target.checked })}
-                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
-                />
-                <label htmlFor="isAdmin" className="text-sm font-medium text-gray-700">
-                  Sign in as Administrator
-                </label>
-              </div>
+              {/* Remove the Admin Toggle section from the form */}
 
               {/* Submit Button */}
               <button type="submit" className="btn btn-primary w-full text-base py-3" disabled={loading}>

@@ -12,7 +12,7 @@ const RegisterPage = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    isAdmin: false,
+    // Remove isAdmin
   })
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
@@ -57,16 +57,12 @@ const RegisterPage = () => {
         name: formData.name,
         email: formData.email,
         password: formData.password,
-        role: formData.isAdmin ? "admin" : "user",
+        // Do not send role or isAdmin
       })
 
       login(response.data.user, response.data.token)
 
-      if (response.data.user.role === "admin") {
-        navigate("/admin")
-      } else {
-        navigate("/dashboard")
-      }
+      navigate("/dashboard")
     } catch (err) {
       setError(err.response?.data?.message || "Registration failed")
     } finally {
@@ -235,18 +231,7 @@ const RegisterPage = () => {
               </div>
 
               {/* Admin Toggle */}
-              <div className="flex items-center space-x-3 p-4 bg-gray-50 rounded-xl">
-                <input
-                  id="isAdmin"
-                  type="checkbox"
-                  checked={formData.isAdmin}
-                  onChange={(e) => setFormData({ ...formData, isAdmin: e.target.checked })}
-                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
-                />
-                <label htmlFor="isAdmin" className="text-sm font-medium text-gray-700">
-                  Register as Administrator
-                </label>
-              </div>
+              {/* Remove the Admin Toggle section from the form */}
 
               {/* Submit Button */}
               <button type="submit" className="btn btn-primary w-full text-base py-3" disabled={loading}>
