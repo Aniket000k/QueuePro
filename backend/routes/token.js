@@ -6,6 +6,8 @@ import { authenticateToken } from "../middleware/auth.js"
 
 const router = express.Router()
 
+// Remove all console.log statements for route registration and debugging
+
 const SERVICES = {
   hospital: {
     opd: "OPD (Out Patient Department)",
@@ -22,9 +24,6 @@ const SERVICES = {
     "customer-service": "Customer Service",
   },
 }
-
-console.log("EMAIL_USER:", process.env.EMAIL_USER)
-console.log("EMAIL_PASS:", process.env.EMAIL_PASS ? "Present" : "Missing")
 
 // Email transporter
 const transporter = nodemailer.createTransport({

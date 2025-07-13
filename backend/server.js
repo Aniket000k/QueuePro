@@ -50,8 +50,7 @@ const buildPath = path.join(__dirname, "public", "dist")
 app.use(express.static(buildPath))
 
 // Catch-all route to serve index.html for SPA
-app.get("*", (req, res, next) => {
-  // Only handle non-API routes
+app.use((req, res, next) => {
   if (req.path.startsWith("/api/")) return next()
   res.sendFile(path.join(buildPath, "index.html"))
 })
