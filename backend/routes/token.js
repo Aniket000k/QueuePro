@@ -167,7 +167,7 @@ router.post("/", authenticateToken, async (req, res) => {
 })
 
 // Get token by number (standard REST: /api/token/:tokenNumber)
-router.get('/token/:tokenNumber', authenticateToken, async (req, res) => {
+router.get('/:tokenNumber', authenticateToken, async (req, res) => {
   try {
     const { tokenNumber } = req.params
     const userId = req.user.userId
