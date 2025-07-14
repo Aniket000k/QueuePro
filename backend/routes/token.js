@@ -20,7 +20,7 @@ const SERVICES = {
     "cash-deposit": "Cash Deposit",
     "loan-inquiry": "Loan Inquiry",
     "account-opening": "Account Opening",
-    investment: "Investment Services",
+    "investment": "Investment Services",
     "customer-service": "Customer Service",
   },
 }
@@ -65,13 +65,16 @@ const generateTokenNumber = async (branchType, serviceId) => {
 
   let nextNumber = 1;
   if (lastToken) {
-    // Extract the numeric part from the tokenNumber
-    const match = lastToken.tokenNumber.match(/\d+$/);
+    // Extract the numeric part from the tokenNumber (before the dash)
+    const match = lastToken.tokenNumber.match(/\d+(?=-\d{8}$)/);
     if (match) {
       nextNumber = parseInt(match[0], 10) + 1;
     }
   }
-  return `${prefix}${serviceShort}${nextNumber.toString().padStart(3, "0")}`;
+  // Add date string in DDMMYYYY format
+  const now = new Date();
+  const dateStr = `${now.getDate().toString().padStart(2, '0')}${(now.getMonth()+1).toString().padStart(2, '0')}${now.getFullYear()}`;
+  return `${prefix}${serviceShort}${nextNumber.toString().padStart(3, "0")}-${dateStr}`;
 }
 
 // Create token

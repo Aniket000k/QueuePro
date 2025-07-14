@@ -15,6 +15,7 @@ import authRoutes from "./routes/auth.js"
 import tokenRoutes from "./routes/token.js"
 import adminRoutes from "./routes/admin.js"
 import userRoutes from "./routes/user.js"
+import appointmentsRoutes from "./routes/appointments.js"
 
 const app = express()
 const server = createServer(app)
@@ -68,6 +69,7 @@ app.use("/api/auth", authRoutes)
 app.use("/api/token", tokenRoutes)
 app.use("/api/admin", adminRoutes)
 app.use("/api/user", userRoutes)
+app.use("/api/appointments", appointmentsRoutes)
 
 // Socket.IO connection handling
 io.on("connection", (socket) => {
