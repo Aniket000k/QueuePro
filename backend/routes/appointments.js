@@ -54,19 +54,28 @@ router.post("/", authenticateToken, async (req, res) => {
           to: user.email,
           subject: "Your Bank Appointment is Scheduled",
           html: `
-            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-              <h2 style="color: #333;">Bank Appointment Confirmation</h2>
-              <p>Dear ${user.name},</p>
-              <p>Your bank appointment has been scheduled successfully. Here are the details:</p>
-              <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
-                <h3 style="margin-top: 0;">Appointment Details:</h3>
-                <p><strong>Date:</strong> ${date}</p>
-                <p><strong>Time:</strong> ${time}</p>
-                <p><strong>Purpose:</strong> ${purpose}</p>
-                <p><strong>Notes:</strong> ${notes || "-"}</p>
-                <p><strong>Booked At:</strong> ${new Date().toLocaleString()}</p>
+            <div style="font-family: 'Segoe UI', Arial, sans-serif; background: #f4f6fb; padding: 32px 0;">
+              <div style="max-width: 520px; margin: 0 auto; background: #fff; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.07); overflow: hidden;">
+                <div style="background: linear-gradient(90deg, #2563eb 0%, #6366f1 100%); padding: 24px 32px; text-align: center;">
+                  <h1 style="color: #fff; font-size: 2rem; margin: 0; letter-spacing: 1px;">QUEUE PRO</h1>
+                  <p style="color: #e0e7ff; margin: 8px 0 0; font-size: 1.1rem;">Your Bank Appointment is Confirmed!</p>
+                </div>
+                <div style="padding: 32px;">
+                  <h2 style="color: #2563eb; margin-bottom: 12px;">Meeting Scheduled 🎉</h2>
+                  <p style="color: #222; font-size: 1.1rem; margin-bottom: 24px;">Dear <b>${user.name}</b>,<br>Your bank appointment has been <b>successfully scheduled</b> with QUEUE PRO. Please find your appointment details below:</p>
+                  <div style="background: #f1f5f9; border-radius: 10px; padding: 20px 24px; margin-bottom: 24px;">
+                    <table style="width: 100%; font-size: 1rem; color: #222;">
+                      <tr><td style="padding: 6px 0;"><b>Date:</b></td><td>${date}</td></tr>
+                      <tr><td style="padding: 6px 0;"><b>Time:</b></td><td>${time}</td></tr>
+                      <tr><td style="padding: 6px 0;"><b>Purpose:</b></td><td>${purpose}</td></tr>
+                      <tr><td style="padding: 6px 0;"><b>Notes:</b></td><td>${notes || "-"}</td></tr>
+                      <tr><td style="padding: 6px 0;"><b>Booked At:</b></td><td>${new Date().toLocaleString()}</td></tr>
+                    </table>
+                  </div>
+                 
+                  <p style="color: #64748b; font-size: 0.97rem; text-align: center;">Thank you for choosing <b>QUEUE PRO</b>!<br>We look forward to serving you.</p>
+                </div>
               </div>
-              <p>Thank you for using our QueuePro!</p>
             </div>
           `,
         })

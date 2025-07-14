@@ -113,19 +113,26 @@ router.post("/serve-next", authenticateToken, requireAdmin, async (req, res) => 
         to: token.userEmail,
         subject: "Your Token is Ready - Please Proceed",
         html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2 style="color: #22c55e;">Your Turn is Ready!</h2>
-            <p>Dear ${token.userName},</p>
-            <p>Your token <strong>${token.tokenNumber}</strong> for <strong>${token.serviceName}</strong> is now ready.</p>
-            
-            <div style="background-color: #dcfce7; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #22c55e;">
-              <h3 style="margin-top: 0; color: #15803d;">Please Proceed to Service Counter</h3>
-              <p><strong>Token Number:</strong> ${token.tokenNumber}</p>
-              <p><strong>Service:</strong> ${token.serviceName}</p>
-              <p><strong>Branch:</strong> ${token.branchType.charAt(0).toUpperCase() + token.branchType.slice(1)}</p>
+          <div style="font-family: 'Segoe UI', Arial, sans-serif; background: #f4f6fb; padding: 32px 0;">
+            <div style="max-width: 520px; margin: 0 auto; background: #fff; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.07); overflow: hidden;">
+              <div style="background: linear-gradient(90deg, #22c55e 0%, #2563eb 100%); padding: 24px 32px; text-align: center;">
+                <h1 style="color: #fff; font-size: 2rem; margin: 0; letter-spacing: 1px;">QUEUE PRO</h1>
+                <p style="color: #d1fae5; margin: 8px 0 0; font-size: 1.1rem;">Your Turn is Ready!</p>
+              </div>
+              <div style="padding: 32px;">
+                <h2 style="color: #22c55e; margin-bottom: 12px;">Please Proceed to Service Counter ✅</h2>
+                <p style="color: #222; font-size: 1.1rem; margin-bottom: 24px;">Dear <b>${token.userName}</b>,<br>Your token <b>${token.tokenNumber}</b> for <b>${token.serviceName}</b> is now ready. Please proceed to the service counter.</p>
+                <div style="background: #dcfce7; border-radius: 10px; padding: 20px 24px; margin-bottom: 24px; border-left: 4px solid #22c55e;">
+                  <table style="width: 100%; font-size: 1rem; color: #222;">
+                    <tr><td style="padding: 6px 0;"><b>Token Number:</b></td><td>${token.tokenNumber}</td></tr>
+                    <tr><td style="padding: 6px 0;"><b>Service:</b></td><td>${token.serviceName}</td></tr>
+                    <tr><td style="padding: 6px 0;"><b>Branch:</b></td><td>${token.branchType.charAt(0).toUpperCase() + token.branchType.slice(1)}</td></tr>
+                  </table>
+                </div>
+               
+                <p style="color: #64748b; font-size: 0.97rem; text-align: center;">Thank you for choosing <b>QUEUE PRO</b>!<br>We look forward to serving you.</p>
+              </div>
             </div>
-            
-            <p>Please proceed to the service counter immediately. Thank you for your patience!</p>
           </div>
         `,
       })

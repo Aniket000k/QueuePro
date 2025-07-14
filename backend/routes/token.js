@@ -126,23 +126,29 @@ router.post("/", authenticateToken, async (req, res) => {
         to: user.email,
         subject: "Your Token Booking Confirmation",
         html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2 style="color: #333;">Token Booking Confirmation</h2>
-            <p>Dear ${user.name},</p>
-            <p>Your token <strong>${tokenNumber}</strong> for <strong>${SERVICES[branchType][serviceId]}</strong> at <strong>${branchType.charAt(0).toUpperCase() + branchType.slice(1)}</strong> has been confirmed.</p>
-            
-            <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
-              <h3 style="margin-top: 0;">Token Details:</h3>
-              <p><strong>Token Number:</strong> ${tokenNumber}</p>
-              <p><strong>Branch:</strong> ${branchType.charAt(0).toUpperCase() + branchType.slice(1)}</p>
-              <p><strong>Service:</strong> ${SERVICES[branchType][serviceId]}</p>
-              <p><strong>Booked At:</strong> ${new Date().toLocaleString()}</p>
-              <p><strong>Status:</strong> Waiting</p>
-              <p><strong>Position:</strong> #${position}</p>
+          <div style="font-family: 'Segoe UI', Arial, sans-serif; background: #f4f6fb; padding: 32px 0;">
+            <div style="max-width: 520px; margin: 0 auto; background: #fff; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.07); overflow: hidden;">
+              <div style="background: linear-gradient(90deg, #2563eb 0%, #6366f1 100%); padding: 24px 32px; text-align: center;">
+                <h1 style="color: #fff; font-size: 2rem; margin: 0; letter-spacing: 1px;">QUEUE PRO</h1>
+                <p style="color: #e0e7ff; margin: 8px 0 0; font-size: 1.1rem;">Your Token is Confirmed!</p>
+              </div>
+              <div style="padding: 32px;">
+                <h2 style="color: #2563eb; margin-bottom: 12px;">Token Generated 🎟️</h2>
+                <p style="color: #222; font-size: 1.1rem; margin-bottom: 24px;">Dear <b>${user.name}</b>,<br>Your token <b>${tokenNumber}</b> for <b>${SERVICES[branchType][serviceId]}</b> at <b>${branchType.charAt(0).toUpperCase() + branchType.slice(1)}</b> has been <b>successfully generated</b> with QUEUE PRO. Please find your token details below:</p>
+                <div style="background: #f1f5f9; border-radius: 10px; padding: 20px 24px; margin-bottom: 24px;">
+                  <table style="width: 100%; font-size: 1rem; color: #222;">
+                    <tr><td style="padding: 6px 0;"><b>Token Number:</b></td><td>${tokenNumber}</td></tr>
+                    <tr><td style="padding: 6px 0;"><b>Branch:</b></td><td>${branchType.charAt(0).toUpperCase() + branchType.slice(1)}</td></tr>
+                    <tr><td style="padding: 6px 0;"><b>Service:</b></td><td>${SERVICES[branchType][serviceId]}</td></tr>
+                    <tr><td style="padding: 6px 0;"><b>Booked At:</b></td><td>${new Date().toLocaleString()}</td></tr>
+                    <tr><td style="padding: 6px 0;"><b>Status:</b></td><td>Waiting</td></tr>
+                    <tr><td style="padding: 6px 0;"><b>Position:</b></td><td>#${position}</td></tr>
+                  </table>
+                </div>
+               
+                <p style="color: #64748b; font-size: 0.97rem; text-align: center;">Thank you for choosing <b>QUEUE PRO</b>!<br>We look forward to serving you.</p>
+              </div>
             </div>
-            
-            <p>You will receive real-time updates about your queue status. Please keep this email for your records.</p>
-            <p>Thank you for using our Queue Management System!</p>
           </div>
         `,
       })
