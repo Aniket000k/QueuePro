@@ -29,10 +29,7 @@ const io = new Server(server, {
   transports: ['websocket', 'polling']
 })
 
-// Test your env values
-console.log("EMAIL_USER:", process.env.EMAIL_USER)
-console.log("EMAIL_PASS:", process.env.EMAIL_PASS ? "Loaded ✅" : "Missing ❌")
-console.log("EMAIL_PASS length:", process.env.EMAIL_PASS?.length);
+
 
 // Middleware
 app.use(cors({
@@ -104,12 +101,4 @@ server.listen(PORT, () => {
   console.log(`Socket.IO server initialized`)
 })
 
-const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
+
